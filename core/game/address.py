@@ -136,3 +136,4 @@ WplAddr = 0xF770  # 物品栏
 WplPyAddr = 0xA8  # 物品栏偏移
 JnlAddr = 0xF6E8  # 技能栏
 JnlPyAddr = 0x90  # 技能栏偏移
+JnMcAddr = 0xB0  # 技能名称

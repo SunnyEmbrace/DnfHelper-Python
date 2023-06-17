@@ -168,9 +168,12 @@ class Auto:
                             cls.pick.pickup()
                             time.sleep(random.uniform(0.1, 0.5))
                             # 过图
-                            cls.pass_map()
-                            logger.info("过图耗时 {}".format(time.time() - start_time), 1)
-                            continue
+                            if config().getint("自动配置", "过图方式") > 0:
+                                cls.pass_map()
+                                logger.info("过图耗时 {}".format(time.time() - start_time), 1)
+                                continue
+                            else:
+                                time.sleep(2)
                     # 通关
                     if cls.map_data.is_boss_room():
                         if cls.map_data.is_pass():

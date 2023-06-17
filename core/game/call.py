@@ -1,4 +1,7 @@
+import _thread
 import time
+
+import keyboard
 
 from common import helper, logger
 from core.game import mem, fast_call as fc
@@ -110,14 +113,41 @@ def person_ptr():
     return person_addr
 
 
-def skill_call_power_random(supper_skill_list):
+def skill_call_power_random(un_skill_list):
     # 获取当前窗口的焦点
     title = helper.get_process_name()
     if title == "地下城与勇士：创新世纪":
         """技能call"""
-        key = skill.pick_key()
-        key.remove(supper_skill_list)
-        helper.key_press_release_list(key)
+        key = skill.pick_key(1)
+        if un_skill_list.__contains__(key):
+            un_skill_list.remove(key)
+        helper.key_press_release(key)
+
+
+switch = False
+
+
+def hotkey():
+    keyboard.add_hotkey('f1', check_switch)
+    keyboard.wait()
+
+
+def check_switch():
+    print("switch")
+    global switch
+    switch = not switch
+
+
+def auto():
+    while True:
+        if switch:
+            skill_call_power_random(['q', 'a'])
+
+
+if __name__ == '__main__':
+    # 创建新线程
+    _thread.start_new_thread(auto, ())
+    hotkey()
 
 
 def skill_call_power(un_used):

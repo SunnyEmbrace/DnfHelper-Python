@@ -276,7 +276,7 @@ def check_skill_down_single(key):
     elif key == KeyCode.VK_Y.value:
         result = mem.read_long(skill_addr + address_all.技能Y)
     elif key == KeyCode.VK_TAB.value:
-        result = mem.read_long(skill_addr + address_all.技能Tab)
+        result = mem.read_long(skill_addr + address_all.技能Ctrl)
 
     if result is None or result <= 0:
         return False
